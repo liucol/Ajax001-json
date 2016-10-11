@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/new-Ajax.js" ></script>
+		<script>
+			window.onload=function(){
+	          var obut1=document.getElementById("but1");
+	          var oul1=document.getElementById("ul1");
+	          obut1.onclick=function(){
+	          	var oAjax=new FnAjax("text/user.txt?t="+new Date().getTime(),function(str){
+	          		//使用eval把字符串的内容解析成js能够识别的东西
+	          		var ousers=eval(str);
+	          		for(var i=0;i<ousers.length;i++){
+	          			var oli=document.createElement('li');
+	          			oli.innerHTML="名字：<strong>"+ousers[i].name+"</strong>密码<strong>"+ousers[i].password+"</strong></br>";
+	          			oul1.appendChild(oli);
+	          		}
+	          	},function(filed){
+	          		alert("失败返回的状态码："+filed)
+	          	});
+	          }
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" id="but1" value="读取" />
+		<ul id="ul1">
+			
+		</ul>
+	</body>
+</html>
